@@ -17,7 +17,7 @@ Un generador de contraseñas interactivo y seguro desarrollado con tecnologías 
 - **JavaScript (Vanilla):** Manipulación del DOM, validación de formularios y lógica de concatenación.
 
 ## 🔗 Enlaces
-- **Demo en vivo:** [https://erwinzieger.github.io/murdokpass/]
+- **¡Pruébala!** [https://erwinzieger.github.io/murdokpass/]
 
 ## 👨‍💻 Autor
 - **Erwin Zieger** - [LinkedIn](https://www.linkedin.com/in/erwinzieger)
