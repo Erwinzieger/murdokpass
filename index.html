@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheMurdokPass</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=Doto:wght@100..900&family=Jacquard+12&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1 class="titulo">The <span>Murdok</span> SecurePass</h1>
+    </header>
+
+    <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
+    <main>
+        <div class="typewriter-container">
+            <p class="cursor typewriter-animation">Bienvenido a TheMurdokSecurePass</p>
+        </div>
+
+        <p class="texto">¡En esta web serás capaz de poder crear tu propia contraseña <strong>fácil de recordar</strong> y <strong>muy segura</strong>!</p>
+        <p class="texto">El programa consiste de 3 pasos simples que gracias a las respuestas que brindes se generará una contraseña muy segura.</p>
+        <p class="texto" style="font-size: 16px; color: #FFD700;">Recuerde que para mayor seguridad, no le debe compartir esta contraseña a nadie.<br>Se recomienda también que anote su nueva contraseña en una hoja de papel en la que la pueda guardar en un lugar seguro.</p>
+
+        <h3 class="texto">Haz click en el botón para comenzar</h3>
+
+        <div class="box-button">
+            <div class="button"><span>Comenzar</span></div>
+        </div>
+    </main>
+
+    <div id="generador" style="display: none;">
+        
+        <!-- Paso 1: Frase -->
+        <div class="paso-container" id="paso1">
+            <h2 class="paso-titulo">Paso 1</h2>
+            <p class="texto">
+                Ingrese una frase que consista de 4 o 5 palabras, que sea fácil de recordar.<br><br>
+                <strong>Por ejemplo:</strong> Puede ser una frase que diga siempre alguien cercano o alguna frase que te guste de tu artista favorito o sino también una frase personal, como:<br>
+                "Amo a mi gato Desmond" • "Mi abuela se llama Graciela" • "Tengo un Fiat gris" • "Me encanta el Tango"
+            </p>
+            <div class="input-grupo">
+                <input type="text" class="input-campo" id="frase-input" placeholder="Escriba su frase aquí...">
+                <div class="mensaje-error" id="frase-error"></div>
+            </div>
+            <div class="box-button" onclick="validarFrase()">
+                <div class="button"><span>Continuar</span></div>
+            </div>
+        </div>
+
+        <!-- Paso 2: Año -->
+        <div class="paso-container" id="paso2" style="display: none;">
+            <h2 class="paso-titulo">Paso 2</h2>
+            <p class="texto">
+                Ingrese un año de nacimiento que le sea de importancia.<br><br>
+                <strong>Por ejemplo:</strong> puede utilizar el año de nacimiento de un ser querido, el de su artista favorito o simplemente el suyo.
+            </p>
+            <div class="input-grupo">
+                <input type="text" class="input-campo" id="ano-input" placeholder="Ejemplo: 1985">
+                <div class="mensaje-error" id="ano-error"></div>
+            </div>
+            <div class="box-button" onclick="validarAno()">
+                <div class="button"><span>Continuar</span></div>
+            </div>
+        </div>
+
+        <!-- Paso 3: Nombre y Apellido -->
+        <div class="paso-container" id="paso3" style="display: none;">
+            <h2 class="paso-titulo">Paso 3</h2>
+            <p class="texto">
+                Ingrese un nombre y apellido que le sea fácil de recordar.<br><br>
+                Puede ser el de su artista favorito, el de su mascota (En ese caso debe agregarle su apellido), el de algún familiar querido o simplemente puede agregar el suyo.<br><br>
+                <strong>Importante:</strong> En caso de que la persona que usted quiere agregar tiene más de un nombre o más de un apellido, debe ingresar solamente el <strong>PRIMER nombre</strong> y el <strong>PRIMER apellido</strong>.
+            </p>
+            <div class="input-grupo">
+                <input type="text" class="input-campo" id="nombre-input" placeholder="Ejemplo: Juan Pérez">
+                <div class="mensaje-error" id="nombre-error"></div>
+            </div>
+            <div class="box-button" onclick="validarNombre()">
+                <div class="button"><span>Continuar</span></div>
+            </div>
+        </div>
+
+        <!-- Paso 4: Carácter Especial -->
+        <div class="paso-container" id="paso4" style="display: none;">
+            <h2 class="paso-titulo">Paso 4</h2>
+            <p class="texto">
+                Este paso es opcional.<br><br>
+                En algunas páginas cuando te registras te solicitan de manera obligatoria que coloques un Carácter Especial para poder completar con el registro.<br>
+                Es beneficioso porque realizar esto hace que tu contraseña sea aún más segura.
+            </p>
+            <p class="texto" style="font-size: 20px; color: #FFD700;">
+                ¿Desea realizar este paso o prefiere omitirlo?
+            </p>
+            <div class="botones-opcion">
+                <div class="box-button" onclick="mostrarCaracteres()">
+                    <div class="button"><span>Sí</span></div>
+                </div>
+                <div class="box-button" onclick="generarContrasenaFinal()">
+                    <div class="button"><span>No</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selección de Carácter Especial -->
+        <div class="paso-container" id="seleccion-caracter" style="display: none;">
+            <h2 class="paso-titulo">Seleccione su Carácter Especial</h2>
+            <p class="texto">
+                Seleccione qué Carácter Especial le gusta más o le resulte más cómodo.
+            </p>
+            <div class="caracteres-grid">
+                <div class="caracter-btn" onclick="seleccionarCaracter('!')">!</div>
+                <div class="caracter-btn" onclick="seleccionarCaracter('@')">@</div>
+                <div class="caracter-btn" onclick="seleccionarCaracter('#')">#</div>
+                <div class="caracter-btn" onclick="seleccionarCaracter('$')">$</div>
+                <div class="caracter-btn" onclick="seleccionarCaracter('%')">%</div>
+                <div class="caracter-btn" onclick="seleccionarCaracter('&')">&</div>
+                <div class="caracter-btn" onclick="seleccionarCaracter('*')">*</div>
+            </div>
+            <div class="box-button" onclick="volverPaso4()">
+                <div class="button"><span>Volver</span></div>
+            </div>
+        </div>
+
+        <!-- Resultado Final CON VERIFICADOR DE CONTRASEÑA -->
+        <div class="resultado-container" id="resultado" style="display: none;">
+            <h2 class="paso-titulo" style="color: #00ff00;">¡Felicidades!</h2>
+            <p class="texto">Tu contraseña es:</p>
+            <div class="contrasena-display" id="contrasena-final"></div>
+            <p class="texto" style="font-size: 16px;">
+                Procura anotar tu contraseña preferiblemente en un papel para luego tenerlo en un lugar seguro.<br>
+                <strong>¡Muchas gracias! ¡Espero que te sirva!</strong>
+            </p>
+            
+            <!--Verificador de seguridad -->
+            <div class="verificador-seguridad">
+                <h3 class="paso-titulo" style="font-size: 22px; color: #4CAF50;">🔐 Verifica qué tan segura es tu contraseña</h3>
+                <p class="texto" style="font-size: 14px; margin-bottom: 15px;">
+                    Usa esta herramienta externa para confirmar la fortaleza de tu contraseña:
+                </p>
+                
+                <!-- Iframe para el verificador -->
+                <div class="iframe-container">
+                    <iframe 
+                        src="https://www.passwordmonster.com/" 
+                        title="Verificador de Contraseñas"
+                        class="password-checker-iframe">
+                    </iframe>
+                </div>
+                
+                <!-- Link alternativo por si el iframe no funciona -->
+                <div class="link-alternativo">
+                    <p class="texto" style="font-size: 20px; margin-top: 10px;">
+                        ¿No carga? <a href="https://www.passwordmonster.com/" target="_blank" class="link-verificador">
+                            Haz clic aquí para abrir en nueva pestaña
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="botones-finales">
+                <div class="box-button" onclick="copiarContrasena()">
+                    <div class="button"><span>Copiar</span></div>
+                </div>
+            </div>
+                <div class="box-button" onclick="reiniciarGenerador()">
+                    <div class="button"><span>Nueva</span></div>
+                </div>
+                <div class="presentacion">
+                    <p class="texto" style="font-size: 10px; margin-top: 5px; color: white;">
+                        Proyecto creado por: <a href="https://www.linkedin.com/in/erwinzieger" target="_blank" class="link-verificador" style="color: rgb(0, 0, 0);">
+                            Erwin Zieger
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <script src="murdoksecurepass.js"></script>
+</body>
+</html>
