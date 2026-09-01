@@ -59,7 +59,7 @@ function validarFrase() {
 
     const palabras = input.split(/\s+/);
     
-    // CAMBIO: Ahora requiere MÍNIMO 4 palabras
+    //MÍNIMO 4 palabras
     if (palabras.length < 4 || palabras.length > 5) {
         mostrarError('frase-error', '¡Error!: Debe ingresar entre 4 y 5 PALABRAS!');
         return;
@@ -132,7 +132,7 @@ function validarNombre() {
     nombre_usuario = palabras.map(palabra => palabra[0].toUpperCase()).join('');
     ocultarError('nombre-error');
     
-    // APLICAR EFECTO DE TRANSICIÓN
+    //EFECTO DE TRANSICION
     efectoTransicion(() => {
         siguientePaso('paso3', 'paso4');
     });
